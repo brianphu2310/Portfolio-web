@@ -8,14 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0b0c0e;--bg2:#111316;--card:#14171a;--line:#23272d;--tx:#eceff2;--mu:#8b949e;--ac:#7cc4ff;--ac2:#8b949e;--ok:#5fb98a;--warn:#d6a85a}
+:root{--bg:#ffffff;--bg2:#f6f7f9;--card:#ffffff;--line:#e3e6ea;--tx:#14181d;--mu:#5b6672;--ac:#1f5fbf;--ac2:#5b6672;--ok:#1f8a5b;--warn:#a8721a}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--tx);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 .mono{font-family:'JetBrains Mono',monospace}
-nav{position:sticky;top:0;z-index:20;background:rgba(5,10,20,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
 .logo{font-weight:700;letter-spacing:.04em;color:var(--tx)}
 .logo b{color:var(--mu)}
@@ -30,7 +30,7 @@ h1 span{color:var(--tx)}
 .lead{max-width:680px;color:var(--mu);font-size:1.1rem}
 .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
 .btn{padding:11px 20px;border-radius:6px;font-weight:600;font-size:.9rem;border:1px solid var(--line);color:var(--tx)}
-.btn.p{background:var(--tx);color:#0b0c0e;border-color:var(--tx)}
+.btn.p{background:var(--tx);color:#fff;border-color:var(--tx)}
 .btn:hover{filter:brightness(1.15)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:56px}
 .stat{background:var(--bg2);padding:22px}
@@ -43,12 +43,12 @@ h2{font-size:1.9rem;font-weight:700}
 .sub{color:var(--mu);max-width:720px;margin-bottom:34px}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;display:flex;flex-direction:column;transition:.2s}
-.card:hover{border-color:#3a4049}
+.card:hover{border-color:#b9c0c8;box-shadow:0 2px 10px rgba(20,24,29,.06)}
 .cat{font-size:.68rem;letter-spacing:.1em;color:var(--mu);text-transform:uppercase}
 .card h3{font-size:1.15rem;margin:8px 0 8px}
 .card p{color:var(--mu);font-size:.9rem;flex:1}
-.proof{margin:14px 0;padding:10px 12px;border-left:2px solid var(--ok);background:rgba(95,185,138,.06);font-size:.8rem;color:#c3e3d2}
-.proof.w{border-color:var(--warn);background:rgba(214,168,90,.06);color:#e6d3ad}
+.proof{margin:14px 0;padding:10px 12px;border-left:2px solid var(--ok);background:rgba(31,138,91,.07);font-size:.8rem;color:#1d5e43}
+.proof.w{border-color:var(--warn);background:rgba(168,114,26,.08);color:#6f4b10}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .tags span{font:500 .7rem 'JetBrains Mono',monospace;border:1px solid var(--line);padding:2px 8px;border-radius:4px;color:var(--mu)}
 .row{display:flex;gap:16px;font-size:.82rem;font-weight:600}
@@ -57,10 +57,10 @@ h2{font-size:1.9rem;font-weight:700}
 .row .off{color:var(--mu);font-weight:500}
 .tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
 .tabs button,.mode button{background:none;border:1px solid var(--line);color:var(--mu);padding:8px 16px;border-radius:6px;cursor:pointer;font:600 .82rem Inter,system-ui,sans-serif}
-.tabs button.on,.mode button.on{border-color:var(--ac);color:var(--ac);background:rgba(124,196,255,.08)}
+.tabs button.on,.mode button.on{border-color:var(--ac);color:var(--ac);background:rgba(31,95,191,.07)}
 .mode{display:flex;gap:8px;margin-left:auto}
 .bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;align-items:center}
-.shot{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.shot{background:#fff;box-shadow:0 2px 12px rgba(20,24,29,.06);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .shot img{display:block;width:100%;height:auto}
 .cap{padding:16px 20px;font-size:.88rem;color:var(--mu);border-top:1px solid var(--line)}
 .cap b{color:var(--tx)}
