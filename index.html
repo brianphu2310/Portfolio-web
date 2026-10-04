@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#050a14;--bg2:#0a1322;--card:#0d1829;--line:#16263b;--tx:#e6f1f7;--mu:#8aa2b3;--ac:#22e5ee;--ac2:#a259ff;--ok:#3ddc97;--warn:#f5b84b}
+:root{--bg:#0b0c0e;--bg2:#111316;--card:#14171a;--line:#23272d;--tx:#eceff2;--mu:#8b949e;--ac:#7cc4ff;--ac2:#8b949e;--ok:#5fb98a;--warn:#d6a85a}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--tx);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
@@ -17,38 +17,38 @@ a{color:inherit;text-decoration:none}
 .mono{font-family:'JetBrains Mono',monospace}
 nav{position:sticky;top:0;z-index:20;background:rgba(5,10,20,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-.logo{font-weight:800;letter-spacing:.08em;color:var(--ac)}
-.logo b{color:var(--ac2)}
+.logo{font-weight:700;letter-spacing:.04em;color:var(--tx)}
+.logo b{color:var(--mu)}
 .links{display:flex;gap:26px;font-size:.85rem;color:var(--mu)}
 .links a:hover{color:var(--ac)}
 .avail{font-size:.75rem;color:var(--ok);display:flex;align-items:center;gap:8px}
-.avail i{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok)}
-.hero{padding:96px 0 64px;background:radial-gradient(800px 380px at 80% -10%,rgba(34,229,238,.12),transparent),radial-gradient(600px 300px at 0% 30%,rgba(162,89,255,.10),transparent)}
-.eyebrow{font-size:.75rem;letter-spacing:.2em;color:var(--ac2);text-transform:uppercase}
+.avail i{width:7px;height:7px;border-radius:50%;background:var(--ok)}
+.hero{padding:104px 0 64px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;color:var(--mu);text-transform:uppercase}
 h1{font-size:clamp(2.6rem,7vw,4.6rem);font-weight:800;line-height:1.05;margin:14px 0 18px;letter-spacing:-.02em}
-h1 span{color:var(--ac)}
+h1 span{color:var(--tx)}
 .lead{max-width:680px;color:var(--mu);font-size:1.1rem}
 .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
-.btn{padding:12px 22px;border-radius:6px;font-weight:600;font-size:.9rem;border:1px solid var(--ac);color:var(--ac)}
-.btn.p{background:var(--ac);color:#04121a}
+.btn{padding:11px 20px;border-radius:6px;font-weight:600;font-size:.9rem;border:1px solid var(--line);color:var(--tx)}
+.btn.p{background:var(--tx);color:#0b0c0e;border-color:var(--tx)}
 .btn:hover{filter:brightness(1.15)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:56px}
 .stat{background:var(--bg2);padding:22px}
-.stat b{display:block;font-size:1.9rem;color:var(--ac);font-weight:800}
+.stat b{display:block;font-size:1.7rem;color:var(--tx);font-weight:700}
 .stat span{font-size:.78rem;color:var(--mu)}
 section{padding:72px 0}
 .sh{display:flex;align-items:baseline;gap:14px;margin-bottom:10px}
-.sh small{color:var(--ac2);font-size:.75rem}
+.sh small{color:var(--mu);font-size:.75rem}
 h2{font-size:1.9rem;font-weight:700}
 .sub{color:var(--mu);max-width:720px;margin-bottom:34px}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;display:flex;flex-direction:column;transition:.2s}
-.card:hover{border-color:rgba(34,229,238,.45);transform:translateY(-2px)}
-.cat{font-size:.68rem;letter-spacing:.14em;color:var(--ac2);text-transform:uppercase}
+.card:hover{border-color:#3a4049}
+.cat{font-size:.68rem;letter-spacing:.1em;color:var(--mu);text-transform:uppercase}
 .card h3{font-size:1.15rem;margin:8px 0 8px}
 .card p{color:var(--mu);font-size:.9rem;flex:1}
-.proof{margin:14px 0;padding:10px 12px;border-left:2px solid var(--ok);background:rgba(61,220,151,.06);font-size:.8rem;color:#bfe9d5}
-.proof.w{border-color:var(--warn);background:rgba(245,184,75,.06);color:#f0d9a8}
+.proof{margin:14px 0;padding:10px 12px;border-left:2px solid var(--ok);background:rgba(95,185,138,.06);font-size:.8rem;color:#c3e3d2}
+.proof.w{border-color:var(--warn);background:rgba(214,168,90,.06);color:#e6d3ad}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .tags span{font:500 .7rem 'JetBrains Mono',monospace;border:1px solid var(--line);padding:2px 8px;border-radius:4px;color:var(--mu)}
 .row{display:flex;gap:16px;font-size:.82rem;font-weight:600}
@@ -57,7 +57,7 @@ h2{font-size:1.9rem;font-weight:700}
 .row .off{color:var(--mu);font-weight:500}
 .tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
 .tabs button,.mode button{background:none;border:1px solid var(--line);color:var(--mu);padding:8px 16px;border-radius:6px;cursor:pointer;font:600 .82rem Inter,system-ui,sans-serif}
-.tabs button.on,.mode button.on{border-color:var(--ac);color:var(--ac);background:rgba(34,229,238,.08)}
+.tabs button.on,.mode button.on{border-color:var(--ac);color:var(--ac);background:rgba(124,196,255,.08)}
 .mode{display:flex;gap:8px;margin-left:auto}
 .bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;align-items:center}
 .shot{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
@@ -95,7 +95,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
 <header class="hero" id="top"><div class="wrap">
   <div class="eyebrow mono">Data Analyst · Data Engineering · Compliance Analytics</div>
-  <h1>Brian <span>Phu</span></h1>
+  <h1>Brian Phu</h1>
   <p class="lead">I build data projects end to end: collect and clean the data, model it, test it, and present it so a manager with no technical background can act on it. Based in Sydney, working towards Data Analyst, Data Engineer and AML/compliance roles.</p>
   <div class="cta">
     <a class="btn p" href="#projects">See the 6 projects</a>
@@ -106,7 +106,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     <div class="stat"><b>6</b><span>portfolio projects</span></div>
     <div class="stat"><b>400+</b><span>automated tests across the repos</span></div>
     <div class="stat"><b>1,011</b><span>UN sanctions entries fetched live in CI</span></div>
-    <div class="stat"><b>Tableau + Power BI</b><span>both versions of each dashboard</span></div>
+    <div class="stat"><b>2 BI tools</b><span>Tableau and Power BI versions</span></div>
   </div>
 </div></header>
 
@@ -187,7 +187,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     <div>
       <p>I work as a legal bookkeeper and data migration assistant at a law firm in Sydney, and I am completing a Bachelor of IT. Day to day I handle payroll, superannuation records, commission calculations across branches and property settlement statements, so I know what accurate financial data looks like and how costly mistakes are.</p>
       <p>The portfolio is my way of turning that into analytics and engineering work: clean pipelines, tested code and dashboards a manager can read in a minute.</p>
-      <p>Outside work: espresso (I used to be a barista), Muay Thai and supply chain nerdery.</p>
+      <p>Outside work: espresso, Muay Thai and supply chains.</p>
     </div>
     <ul class="facts">
       <li><b>Location</b>Sydney, Australia</li>
@@ -200,7 +200,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 </div></section>
 
 <section id="contact" class="contact"><div class="wrap">
-  <h2>Let's talk</h2>
+  <h2>Contact</h2>
   <p class="sub" style="margin:0 auto 26px">Open to Data Analyst, Data Engineer and compliance analyst roles in Australia.</p>
   <div class="cta">
     <a class="btn p" href="mailto:brianphu2310@gmail.com">brianphu2310@gmail.com</a>
@@ -209,7 +209,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   </div>
 </div></section>
 
-<footer><div class="wrap"><span>© 2026 Brian Phu</span><span>Sydney, Australia</span></div></footer>
+<footer><div class="wrap"><span>© 2026 Brian Phu</span><span>Sydney, Australia · brianphu2310@gmail.com</span></div></footer>
 
 <script>
 var D={
