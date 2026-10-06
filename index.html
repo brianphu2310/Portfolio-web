@@ -131,8 +131,9 @@ h1 .ch{display:inline-block;opacity:0;transform:perspective(600px) rotateX(-90de
 .tip{position:absolute;left:0;right:0;bottom:0;padding:44px 16px 14px;border-radius:0 0 8px 8px;background:linear-gradient(to top,rgba(8,10,12,.96) 55%,transparent);color:var(--tx);font-size:.82rem;line-height:1.5;opacity:0;transform:translateY(12px);transition:opacity .35s,transform .45s cubic-bezier(.22,1,.36,1);pointer-events:none;z-index:2}
 .tip b{display:block;color:var(--ac);font:600 .68rem ui-monospace,monospace;letter-spacing:.12em;margin-bottom:4px}
 .shot:hover .tip{opacity:1;transform:none}
-#tip3{position:fixed;z-index:50;max-width:290px;padding:12px 14px;border:1px solid #2b3540;border-radius:10px;background:rgba(11,13,16,.92);backdrop-filter:blur(8px);color:var(--tx);font-size:.82rem;line-height:1.5;pointer-events:none;opacity:0;transform:translateY(6px);transition:opacity .2s,transform .25s}
-#tip3.on{opacity:1;transform:none}#tip3 b{display:block;color:var(--ac);font:600 .68rem ui-monospace,monospace;letter-spacing:.12em;margin-bottom:5px}
+#tip3{position:fixed;z-index:3;display:flex;flex-direction:column;justify-content:flex-end;padding:26px 28px;border-radius:6px;background:linear-gradient(to top,rgba(6,8,10,.94) 0%,rgba(6,8,10,.82) 45%,rgba(6,8,10,.35) 100%);color:var(--tx);font-size:clamp(.82rem,1.15vw,1rem);line-height:1.55;pointer-events:none;opacity:0;transition:opacity .3s;overflow:hidden}
+#tip3.on{opacity:1}#tip3 b{display:block;color:var(--ac);font:600 .72rem ui-monospace,monospace;letter-spacing:.14em;margin-bottom:8px}
+#tip3 .go{margin-top:10px;color:var(--ac);font-weight:600}
 </style>
 </head>
 <body><div class="prog" id="prog"></div>
@@ -378,7 +379,9 @@ function loop(){if(!vis)return;requestAnimationFrame(loop);var t=(performance.no
  R.render(sc,cam)}
 
 var rc=new THREE.Raycaster(),tip=document.getElementById("tip3"),hov=false,mp=new THREE.Vector2();
-cv.addEventListener("mousemove",function(e){var r=cv.getBoundingClientRect();mp.set((e.clientX-r.left)/r.width*2-1,-((e.clientY-r.top)/r.height)*2+1);rc.setFromCamera(mp,cam);var a=Math.round(pos),h=rc.intersectObject(planes[a].mesh).length>0;if(h){var f=info[a];tip.innerHTML="<b>WHAT IT DOES</b>"+f.ds+(f.pf?"<br><span style='color:var(--mu)'>"+f.pf+"</span>":"")+"<br><span style='color:var(--ac)'>Click to open the repo →</span>";var x=Math.min(e.clientX+18,innerWidth-310),y=Math.min(e.clientY+18,innerHeight-170);tip.style.left=x+"px";tip.style.top=y+"px"}tip.classList.toggle("on",h);cv.style.cursor=h?"pointer":"default";hov=h});
+function place(){var a=Math.round(pos),m=planes[a].mesh,g=m.geometry;g.computeBoundingBox();var bb=g.boundingBox,r=cv.getBoundingClientRect(),xs=[],ys=[];[[bb.min.x,bb.min.y],[bb.max.x,bb.min.y],[bb.min.x,bb.max.y],[bb.max.x,bb.max.y]].forEach(function(c){var v=new THREE.Vector3(c[0],c[1],0);m.localToWorld(v);v.project(cam);xs.push(r.left+(v.x+1)/2*r.width);ys.push(r.top+(1-v.y)/2*r.height)});var l=Math.min.apply(0,xs),t=Math.min.apply(0,ys);tip.style.left=l+"px";tip.style.top=t+"px";tip.style.width=(Math.max.apply(0,xs)-l)+"px";tip.style.height=(Math.max.apply(0,ys)-t)+"px"}
+var lastA=-1;
+cv.addEventListener("mousemove",function(e){var r=cv.getBoundingClientRect();mp.set((e.clientX-r.left)/r.width*2-1,-((e.clientY-r.top)/r.height)*2+1);rc.setFromCamera(mp,cam);var a=Math.round(pos),h=Math.abs(pos-a)<.08&&rc.intersectObject(planes[a].mesh).length>0;if(h){if(a!==lastA||!tip.classList.contains("on")){var f=info[a];tip.innerHTML="<b>WHAT IT DOES</b>"+f.ds+(f.pf?"<br><span style='color:var(--mu)'>"+f.pf+"</span>":"")+"<div class='go'>Click to open the repo →</div>";lastA=a}place()}tip.classList.toggle("on",h);cv.style.cursor=h?"pointer":"default";hov=h});
 cv.addEventListener("mouseleave",function(){tip.classList.remove("on");hov=false});
 cv.addEventListener("click",function(){if(hov&&info[Math.round(pos)].href)window.open(info[Math.round(pos)].href,"_blank","noopener")});
 document.documentElement.classList.add("gl");size();loop();
