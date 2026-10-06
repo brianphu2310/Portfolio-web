@@ -97,6 +97,24 @@ html{scroll-behavior:smooth}
 .glare{position:absolute;inset:0;border-radius:8px;pointer-events:none;opacity:0;transition:opacity .3s;mix-blend-mode:soft-light}
 .hero h1,.hero .lead,.hero .cta,.hero .eyebrow{will-change:transform}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none;transition:none}}
+
+#showcase{height:760vh;position:relative;border-bottom:1px solid var(--line);display:none}
+.gl #showcase{display:block}
+.stk{position:sticky;top:0;height:100vh;overflow:hidden;background:radial-gradient(ellipse at 70% 40%,#141a22 0%,#0b0c0e 70%)}
+#gl{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cap3{position:absolute;left:max(24px,calc((100vw - 1100px)/2));top:50%;transform:translateY(-50%);width:min(380px,38vw);z-index:2;transition:opacity .45s,transform .6s cubic-bezier(.22,1,.36,1)}
+.cap3.out{opacity:0;transform:translateY(-44%)}
+.cap3 .n{font:600 .75rem 'JetBrains Mono',ui-monospace,monospace;color:var(--ac);letter-spacing:.14em}
+.cap3 h2{font-size:clamp(1.7rem,3.2vw,2.6rem);line-height:1.08;margin:10px 0 14px;letter-spacing:-.02em}
+.cap3 .hk{color:var(--tx);font-size:1.02rem;line-height:1.55;margin-bottom:16px}
+.cap3 .tg{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.cap3 .tg span{font:.72rem ui-monospace,monospace;color:var(--mu);border:1px solid var(--line);padding:3px 8px;border-radius:4px;background:rgba(11,12,14,.6)}
+.cap3 .ln{display:flex;gap:16px;flex-wrap:wrap}.cap3 .ln a{color:var(--ac);font-weight:600;font-size:.92rem}
+.dots3{position:absolute;right:22px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:2}
+.dots3 b{width:8px;height:8px;border-radius:50%;background:#2c333b;cursor:pointer;transition:.3s}
+.dots3 b.on{background:var(--ac);box-shadow:0 0 14px var(--ac);transform:scale(1.4)}
+.hint3{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font:.72rem ui-monospace,monospace;color:var(--mu);letter-spacing:.14em;z-index:2;transition:opacity .4s}
+@media(max-width:820px){.cap3{top:auto;bottom:56px;transform:none;width:calc(100% - 48px)}.cap3.out{transform:translateY(12px)}.cap3 .hk{font-size:.9rem}.dots3{display:none}}
 </style>
 </head>
 <body><div class="prog" id="prog"></div>
@@ -111,7 +129,7 @@ html{scroll-behavior:smooth}
   <h1>Brian Phu</h1>
   <p class="lead">I build data projects end to end: collect and clean the data, model it, test it, and present it so a manager with no technical background can act on it. Based in Sydney, working towards Data Analyst, Data Engineer and AML/compliance roles.</p>
   <div class="cta">
-    <a class="btn p" href="#projects">See the 6 projects</a>
+    <a class="btn p" href="#showcase">Fly through the 6 projects</a>
     <a class="btn" href="https://github.com/brianphu2310" target="_blank" rel="noopener">GitHub</a>
     <a class="btn" href="https://www.linkedin.com/in/brian-phu-data-analysta55353390/" target="_blank" rel="noopener">LinkedIn</a>
   </div>
@@ -123,6 +141,8 @@ html{scroll-behavior:smooth}
   </div>
 </div></header>
 
+<section id="showcase" aria-label="3D project showcase"><div class="stk"><canvas id="gl"></canvas>
+<div class="cap3" id="cap3"></div><div class="dots3" id="dots3"></div><div class="hint3" id="hint3">SCROLL TO FLY THROUGH THE 6 PROJECTS ↓</div></div></section>
 <section id="projects"><div class="wrap">
   <div class="sh"><small class="mono">01</small><h2>Projects</h2></div>
   <p class="sub">Each repo has tests and CI. Where a project scrapes the web, the proof file is written by a GitHub Actions run, not by hand.</p>
@@ -260,6 +280,55 @@ function onS(){tk=false;var y=scrollY,h=document.documentElement.scrollHeight-in
  if(!rm&&hero&&y<hero.offsetHeight){hero.querySelectorAll("h1,.lead,.cta,.eyebrow").forEach(function(e,i){e.style.transform="translate3d(0,"+(y*(.06+i*.035))+"px,0)";});}}
 addEventListener("scroll",function(){if(!tk){tk=true;requestAnimationFrame(onS)}},{passive:true});onS();
 })();
+</script>
+
+<script type="module">
+try{
+var THREE=await import("./vendor/three.module.min.js");
+var cv=document.getElementById("gl"),rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+var R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:false});
+R.setPixelRatio(Math.min(devicePixelRatio,2));R.setClearColor(0x0b0c0e);
+var sc=new THREE.Scene();sc.fog=new THREE.Fog(0x0b0c0e,9,34);
+var cam=new THREE.PerspectiveCamera(48,1,.1,80);
+var keys=["aml","law","reg","nike","barista","ufc"],GAP=10,N=6;
+var cards=[].slice.call(document.querySelectorAll("#projects .card"));
+var info=cards.map(function(c){return{cat:c.querySelector(".cat").textContent,t:c.querySelector("h3").textContent,hk:c.querySelector(".hook").textContent,tg:[].map.call(c.querySelectorAll(".tags span"),function(x){return x.textContent}),ln:c.querySelector(".row").innerHTML}});
+var planes=[],tl=new THREE.TextureLoader(),group=new THREE.Group();sc.add(group);
+keys.forEach(function(k,i){
+ var g=new THREE.Group(),w=5.7,m=new THREE.MeshBasicMaterial({color:0x444444}),mesh=new THREE.Mesh(new THREE.PlaneGeometry(w,w*.6),m);
+ tl.load("img/p-"+k+".jpg",function(t){t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;var a=t.image.height/t.image.width;mesh.geometry.dispose();mesh.geometry=new THREE.PlaneGeometry(w,w*a);m.map=t;m.needsUpdate=true;edge.geometry=new THREE.EdgesGeometry(mesh.geometry);glow.geometry=new THREE.PlaneGeometry(w+.35,w*a+.35)});
+ var edge=new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry),new THREE.LineBasicMaterial({color:0x7cc4ff,transparent:true,opacity:.6}));
+ var glow=new THREE.Mesh(new THREE.PlaneGeometry(w+.35,w*.6+.35),new THREE.MeshBasicMaterial({color:0x7cc4ff,transparent:true,opacity:.08,blending:THREE.AdditiveBlending,depthWrite:false}));glow.position.z=-.05;
+ g.add(glow,mesh,edge);g.position.set(2.1+(i%2?-.3:.3),.1,-i*GAP);g.rotation.y=-.3;group.add(g);planes.push({g:g,m:m,e:edge,gl:glow,b:0,base:g.position.clone()});
+});
+// particles
+var pc=1800,pa=new Float32Array(pc*3);for(var i=0;i<pc;i++){pa[i*3]=(Math.random()-.5)*34;pa[i*3+1]=(Math.random()-.5)*16;pa[i*3+2]=8-Math.random()*(N*GAP+16)}
+var pg=new THREE.BufferGeometry();pg.setAttribute("position",new THREE.BufferAttribute(pa,3));
+var pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0x9ccfff,size:.05,transparent:true,opacity:.75,sizeAttenuation:true}));sc.add(pts);
+var grid=new THREE.GridHelper(120,60,0x1e2a36,0x151b22);grid.position.set(0,-3.4,-25);sc.add(grid);
+// UI
+var cap=document.getElementById("cap3"),dots=document.getElementById("dots3"),sec=document.getElementById("showcase"),hint=document.getElementById("hint3"),cur=-1;
+info.forEach(function(_,i){var d=document.createElement("b");d.onclick=function(){var r=sec.offsetTop,H=sec.offsetHeight-innerHeight;scrollTo({top:r+H*(i/(N-1))+1,behavior:"smooth"})};dots.appendChild(d)});
+function setCap(i){if(i===cur)return;cur=i;cap.classList.add("out");[].forEach.call(dots.children,function(d,j){d.classList.toggle("on",j===i)});setTimeout(function(){var f=info[i];cap.innerHTML='<div class="n">0'+(i+1)+' / 06 · '+f.cat.toUpperCase()+'</div><h2>'+f.t+'</h2><p class="hk">'+f.hk+'</p><div class="tg">'+f.tg.map(function(x){return"<span>"+x+"</span>"}).join("")+'</div><div class="ln">'+f.ln+'</div>';cap.classList.remove("out")},260)}
+function size(){var w=cv.clientWidth,h=cv.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;cam.fov=w<820?62:48;cam.updateProjectionMatrix();var mob=w<820;planes.forEach(function(p,i){p.g.position.x=mob?0:p.base.x;p.g.position.y=mob?1.1:.1;p.g.rotation.y=mob?0:-.3})}
+size();addEventListener("resize",size);
+var mx=0,my=0,pos=0,tgt=0,vis=true,t0=performance.now();
+addEventListener("mousemove",function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+new IntersectionObserver(function(e){vis=e[0].isIntersecting;if(vis)loop()}).observe(sec);
+function ss(a,b,x){x=Math.min(1,Math.max(0,(x-a)/(b-a)));return x*x*(3-2*x)}
+function prog(){var r=sec.getBoundingClientRect(),H=sec.offsetHeight-innerHeight;return Math.min(1,Math.max(0,-r.top/H))}
+function loop(){if(!vis)return;requestAnimationFrame(loop);var t=(performance.now()-t0)/1000;
+ var x=prog()*(N-1),f=Math.min(N-2,Math.floor(x)),u=x-f;if(x>=N-1){f=N-2;u=1}
+ tgt=f+ss(.18,.82,u);pos+=(tgt-pos)*(rm?1:.07);
+ var cz=-pos*GAP+7;cam.position.set(mx*1.2,-my*.7+.2,cz);cam.lookAt(mx*.4+.3,-my*.2,cz-8);
+ cam.rotation.z=Math.sin(t*.3)*.012;
+ var a=Math.round(pos);setCap(a);hint.style.opacity=pos<.15?1:0;
+ planes.forEach(function(p,i){var d=Math.abs(i-pos),act=Math.max(0,1-d*1.2);var tb=.3+.7*act;p.b+=(tb-p.b)*.12;p.m.color.setScalar(p.b);p.e.material.opacity=.15+.65*act;p.gl.material.opacity=.03+.12*act;
+  p.g.position.y=(cam.aspect<1.02?1.1:.1)+Math.sin(t*.8+i*1.7)*.12;p.g.rotation.y=(cam.aspect<1.02?0:-.3)+Math.sin(t*.5+i)*.04+mx*.12*act;p.g.rotation.x=-my*.08*act});
+ pts.rotation.y=Math.sin(t*.05)*.05;pts.position.z=Math.sin(t*.2)*.3;
+ R.render(sc,cam)}
+document.documentElement.classList.add("gl");size();loop();
+}catch(e){console.warn("3D showcase disabled",e)}
 </script>
 </body>
 </html>
