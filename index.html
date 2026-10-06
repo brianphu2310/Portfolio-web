@@ -41,8 +41,8 @@ section{padding:72px 0}
 .sh small{color:var(--mu);font-size:.75rem}
 h2{font-size:1.9rem;font-weight:700}
 .sub{color:var(--mu);max-width:720px;margin-bottom:34px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;display:flex;flex-direction:column;transition:.2s}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.shot{perspective:900px;margin:-6px -6px 16px}.shot img{width:100%;display:block;border-radius:8px;border:1px solid var(--line);box-shadow:0 14px 30px rgba(0,0,0,.5);transition:transform .15s ease-out;transform-style:preserve-3d}.card p.hook{color:var(--ac);font-style:italic;font-size:14px;margin:6px 0 10px}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;display:flex;flex-direction:column;transition:.2s}
 .card:hover{border-color:#3a4049}
 .cat{font-size:.68rem;letter-spacing:.1em;color:var(--mu);text-transform:uppercase}
 .card h3{font-size:1.15rem;margin:8px 0 8px}
@@ -115,37 +115,37 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   <p class="sub">Each repo has tests and CI. Where a project scrapes the web, the proof file is written by a GitHub Actions run, not by hand.</p>
   <div class="grid">
 
-    <div class="card"><div class="cat mono">Compliance · AML/CTF</div><h3>AML/CTF Compliance Suite</h3>
+    <div class="card"><div class="shot"><img src="img/p-aml.jpg" alt="AML/CTF Compliance Suite dashboard" loading="lazy"></div><div class="cat mono">Compliance · AML/CTF</div><h3>AML/CTF Compliance Suite</h3><p class="hook">Australia's new AML duty for law firms, built as a working tool: 236 clients risk-rated, 95 alerts triaged, UN sanctions screened live.</p>
       <p>Client risk rating, transaction monitoring, alert triage and SMR drafts for an Australian law firm. Includes a polite scraper (robots.txt, rate limit, identifying User-Agent) of the UN Security Council sanctions list with name screening.</p>
       <div class="proof">Live run: 1,011 entries (736 individuals, 275 entities), 14 programmes. 206 tests, CI green.</div>
       <div class="tags"><span>Python</span><span>Streamlit</span><span>pandas</span><span>requests</span></div>
       <div class="row"><a href="https://github.com/brianphu2310/AML-CTF_Analyst" target="_blank" rel="noopener">Repo →</a><a href="https://github.com/brianphu2310/AML-CTF_Analyst/blob/main/docs/LIVE_RUN.md" target="_blank" rel="noopener">Proof →</a><a href="https://aml-ctfanalyst-ewy8ksvvc2qzujnxkcradq.streamlit.app" target="_blank" rel="noopener">Live app →</a></div></div>
 
-    <div class="card"><div class="cat mono">Finance · Operations</div><h3>Law Firm Operations Intelligence</h3>
+    <div class="card"><div class="shot"><img src="img/p-law.jpg" alt="Law Firm Operations Intelligence dashboard" loading="lazy"></div><div class="cat mono">Finance · Operations</div><h3>Law Firm Operations Intelligence</h3><p class="hook">Revenue is up but profit is behind budget. The simulator shows which lever closes the gap.</p>
       <p>Financial operations dashboard for a law firm: profit versus budget, with a decision simulator and goal-seek to test what it takes to hit a target.</p>
       <div class="proof w">Synthetic data. Built from my bookkeeping work, contains no client data.</div>
       <div class="tags"><span>Python</span><span>Streamlit</span><span>Plotly</span><span>pandas</span></div>
       <div class="row"><a href="https://github.com/brianphu2310/Law_Firm_Operations_Intelliigence" target="_blank" rel="noopener">Repo →</a><a href="https://lawfirmoperationsintelliigence-gkymdplvqo2g3smdqcgyxv.streamlit.app" target="_blank" rel="noopener">Live app →</a></div></div>
 
-    <div class="card"><div class="cat mono">Regulatory · Compliance</div><h3>Regulatory Change Monitor</h3>
+    <div class="card"><div class="shot"><img src="img/p-reg.jpg" alt="Regulatory Change Monitor dashboard" loading="lazy"></div><div class="cat mono">Regulatory · Compliance</div><h3>Regulatory Change Monitor</h3><p class="hook">200 regulatory changes sorted by impact and urgency: 69 high impact, 16 already overdue.</p>
       <p>Classifies regulatory change items by impact and urgency so a compliance team can triage them. Rule-based classifier with unit tests, data dictionary and CI.</p>
       <div class="proof w">Synthetic data, no scraping by design. 9 tests, CI green.</div>
       <div class="tags"><span>Python</span><span>pytest</span><span>GitHub Actions</span></div>
       <div class="row"><a href="https://github.com/brianphu2310/Regulartory_Change_Monitor" target="_blank" rel="noopener">Repo →</a></div></div>
 
-    <div class="card"><div class="cat mono">Supply chain</div><h3>Nike vs Adidas Factory Intelligence</h3>
+    <div class="card"><div class="shot"><img src="img/p-nike.jpg" alt="Nike vs Adidas Factory Intelligence dashboard" loading="lazy"></div><div class="cat mono">Supply chain</div><h3>Nike vs Adidas Factory Intelligence</h3><p class="hook">Vietnam and Indonesia hold about 40% of the factories, so one shock can hit both brands at once.</p>
       <p>Factory-level competitive analysis: 42 factories in 11 countries, with an HHI concentration index to measure production risk. Tableau and Power BI dashboards.</p>
       <div class="proof">38 tests, CI green. No scraping claimed: the public factory pages did not return usable data.</div>
       <div class="tags"><span>PostgreSQL</span><span>Tableau</span><span>Power BI</span><span>HHI</span></div>
       <div class="row"><a href="https://github.com/brianphu2310/NIKE-AND-ADIDAS-SUPPLY-CHAIN" target="_blank" rel="noopener">Repo →</a></div></div>
 
-    <div class="card"><div class="cat mono">Recommender · Food science</div><h3>Head Barista Coffee Intelligence</h3>
+    <div class="card"><div class="shot"><img src="img/p-barista.jpg" alt="Head Barista Coffee Intelligence dashboard" loading="lazy"></div><div class="cat mono">Recommender · Food science</div><h3>Head Barista Coffee Intelligence</h3><p class="hook">Bright coffees are thin and heavy coffees are flat: acidity and body correlate at -0.71.</p>
       <p>Brewing-method data project and bean consultant app, with scrapers for public sources.</p>
       <div class="proof">Live run: Wikipedia 13 rows, Healthline 3, NCA 5 headings. Perfect Daily Grind blocked bots, so it is logged as 0 rows and not bypassed. 59 tests.</div>
       <div class="tags"><span>Python</span><span>SQL</span><span>Streamlit</span><span>Tableau</span><span>Power BI</span></div>
       <div class="row"><a href="https://github.com/brianphu2310/HEAD-BARISTA-COFFEE-INTELLIGENCE" target="_blank" rel="noopener">Repo →</a><a href="https://github.com/brianphu2310/HEAD-BARISTA-COFFEE-INTELLIGENCE/blob/main/docs/LIVE_RUN.md" target="_blank" rel="noopener">Proof →</a></div></div>
 
-    <div class="card"><div class="cat mono">Sports analytics</div><h3>UFC Stance &amp; Handedness</h3>
+    <div class="card"><div class="shot"><img src="img/p-ufc.jpg" alt="UFC Stance &amp; Handedness dashboard" loading="lazy"></div><div class="cat mono">Sports analytics</div><h3>UFC Stance &amp; Handedness</h3><p class="hook">Right-handed southpaws win more (74.3% vs 70.2%), but at p = 0.07 it is not proven.</p>
       <p>Scraper design, cleaning, hypothesis tests (chi-square) and a KNN fighter recommender across 117 fighters, with Tableau and Power BI dashboards.</p>
       <div class="proof w">UFCStats shows a browser-check challenge to scripts. The run log records 0 rows and I did not bypass it. 96 tests, CI green.</div>
       <div class="tags"><span>Python</span><span>SciPy</span><span>Streamlit</span><span>Tableau</span><span>Power BI</span></div>
@@ -221,6 +221,7 @@ var p="ufc",m="pbi";
 function show(){var d=D[p][m];document.getElementById("shot").src=d[0];document.getElementById("cap").innerHTML=d[1];}
 function wire(id,attr,set){document.getElementById(id).addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;this.querySelectorAll("button").forEach(function(x){x.classList.remove("on")});b.classList.add("on");set(b.getAttribute(attr));show();});}
 wire("tabs","data-p",function(v){p=v});wire("mode","data-m",function(v){m=v});show();
+document.querySelectorAll('.shot').forEach(function(b){var im=b.firstChild;b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;im.style.transform='rotateY('+(x*14)+'deg) rotateX('+(-y*12)+'deg) scale(1.03)'});b.addEventListener('mouseleave',function(){im.style.transform=''})});
 </script>
 </body>
 </html>
