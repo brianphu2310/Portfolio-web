@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="Brian Phu · Data Analyst, Sydney"><meta property="og:description" content="6 end-to-end data projects with tests, CI and live proof: AML/CTF, law firm operations, regulatory change, supply chain, coffee and UFC analytics."><meta property="og:type" content="website"><meta property="og:image" content="img/p-aml.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0b0c0e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0c0e'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-weight='800' font-size='17' text-anchor='middle' fill='%237cc4ff'%3EBP%3C/text%3E%3C/svg%3E">
 <title>Brian Phu — Data Analyst · Sydney</title>
 <meta name="description" content="Portfolio of Brian Phu: data analysis, data engineering and compliance analytics projects with live proof, tests and CI.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -115,6 +117,16 @@ html{scroll-behavior:smooth}
 .dots3 b.on{background:var(--ac);box-shadow:0 0 14px var(--ac);transform:scale(1.4)}
 .hint3{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font:.72rem ui-monospace,monospace;color:var(--mu);letter-spacing:.14em;z-index:2;transition:opacity .4s}
 @media(max-width:820px){.cap3{top:auto;bottom:56px;transform:none;width:calc(100% - 48px)}.cap3.out{transform:translateY(12px)}.cap3 .hk{font-size:.9rem}.dots3{display:none}}
+
+.hero{position:relative;overflow:hidden}.hero>.wrap{position:relative;z-index:1}
+#hc{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.9}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 20% 40%,transparent 0%,var(--bg) 85%);pointer-events:none;opacity:.55}
+h1 .ch{display:inline-block;opacity:0;transform:perspective(600px) rotateX(-90deg) translateY(30px);transform-origin:50% 100%;animation:chin .9s cubic-bezier(.22,1,.36,1) forwards;animation-delay:calc(var(--i)*.045s + .15s)}
+@keyframes chin{to{opacity:1;transform:none}}
+.card::before{content:"";position:absolute;inset:0;border-radius:12px;background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(124,196,255,.10),transparent 45%);opacity:0;transition:opacity .3s;pointer-events:none}
+.card{position:relative}.card:hover::before{opacity:1}
+.btn{transition:transform .25s cubic-bezier(.22,1,.36,1),filter .2s}
+.stat b{font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body><div class="prog" id="prog"></div>
@@ -124,7 +136,7 @@ html{scroll-behavior:smooth}
   <div class="avail mono"><i></i>Open to roles · Sydney</div>
 </div></nav>
 
-<header class="hero" id="top"><div class="wrap">
+<header class="hero" id="top"><canvas id="hc"></canvas><div class="wrap">
   <div class="eyebrow mono">Data Analyst · Data Engineering · Compliance Analytics</div>
   <h1>Brian Phu</h1>
   <p class="lead">I build data projects end to end: collect and clean the data, model it, test it, and present it so a manager with no technical background can act on it. Based in Sydney, working towards Data Analyst, Data Engineer and AML/compliance roles.</p>
@@ -282,8 +294,36 @@ addEventListener("scroll",function(){if(!tk){tk=true;requestAnimationFrame(onS)}
 })();
 </script>
 
+<script>
+(function(){
+var rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+// h1 letters
+var h=document.querySelector("h1");if(h&&!rm){var t=h.textContent;h.innerHTML=t.split("").map(function(c,i){return c===" "?" ":'<span class="ch" style="--i:'+i+'">'+c+'</span>'}).join("")}
+// count-up
+document.querySelectorAll(".stat b").forEach(function(b){var m=b.textContent.match(/^([\d,]+)(\+?)$/);if(!m||rm)return;var end=+m[1].replace(/,/g,""),plus=m[2],done=false;
+ new IntersectionObserver(function(e,o){if(e[0].isIntersecting&&!done){done=true;var t0=performance.now();(function f(n){var k=Math.min(1,(n-t0)/1400),v=Math.round(end*(1-Math.pow(1-k,4)));b.textContent=v.toLocaleString("en-US")+(k===1?plus:"");if(k<1)requestAnimationFrame(f)})(t0)}}).observe(b)});
+// card spotlight
+document.querySelectorAll(".card").forEach(function(c){c.addEventListener("mousemove",function(e){var r=c.getBoundingClientRect();c.style.setProperty("--mx",(e.clientX-r.left)+"px");c.style.setProperty("--my",(e.clientY-r.top)+"px")})});
+// magnetic buttons
+if(!rm)document.querySelectorAll(".btn").forEach(function(b){b.addEventListener("mousemove",function(e){var r=b.getBoundingClientRect();b.style.transform="translate("+((e.clientX-r.left-r.width/2)*.18)+"px,"+((e.clientY-r.top-r.height/2)*.28)+"px)"});b.addEventListener("mouseleave",function(){b.style.transform=""})});
+// hero constellation
+var c=document.getElementById("hc");if(!c||rm)return;var x=c.getContext("2d"),W,H,P=[],mx=-1e3,my=-1e3,vis=true,dpr=Math.min(devicePixelRatio,2);
+function rs(){W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);var n=Math.round(W*H/16000);P=[];for(var i=0;i<n;i++)P.push({x:Math.random()*W,y:Math.random()*H,z:Math.random()*.8+.2,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25})}
+rs();addEventListener("resize",rs);
+c.parentNode.addEventListener("mousemove",function(e){var r=c.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top});c.parentNode.addEventListener("mouseleave",function(){mx=my=-1e3});
+new IntersectionObserver(function(e){vis=e[0].isIntersecting;if(vis)draw()}).observe(c);
+function draw(){if(!vis)return;requestAnimationFrame(draw);x.clearRect(0,0,W,H);
+ for(var i=0;i<P.length;i++){var p=P[i];p.x+=p.vx*p.z;p.y+=p.vy*p.z;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+  var dx=p.x-mx,dy=p.y-my,d=Math.sqrt(dx*dx+dy*dy);if(d<140){var f=(140-d)/140*1.2;p.x+=dx/d*f;p.y+=dy/d*f}
+  x.fillStyle="rgba(156,207,255,"+(.4+.5*p.z)+")";x.beginPath();x.arc(p.x,p.y,p.z*1.5,0,6.283);x.fill();
+  for(var j=i+1;j<P.length;j++){var q=P[j],ax=p.x-q.x,ay=p.y-q.y,dd=ax*ax+ay*ay;if(dd<14000){x.strokeStyle="rgba(124,196,255,"+(.26*(1-dd/14000))+")";x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}}
+  if(d<170){x.strokeStyle="rgba(124,196,255,"+(.35*(1-d/170))+")";x.beginPath();x.moveTo(p.x,p.y);x.lineTo(mx,my);x.stroke()}}}
+draw();
+})();
+</script>
 <script type="module">
 try{
+if(location.search.indexOf("nogl")>-1)throw "nogl";
 var THREE=await import("./vendor/three.module.min.js");
 var cv=document.getElementById("gl"),rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
 var R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:false});
